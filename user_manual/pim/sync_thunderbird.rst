@@ -1,39 +1,42 @@
 ==============================
-Synchronizing with Thunderbird
+Синхронизация с Thunderbird
 ==============================
 
-`Thunderbird <https://www.thunderbird.net>`_ is a feature-rich and mature mail client that can be turned into a full-fledged PIM. However, it lacks support  for address book synchronisation via CardDAV and it also lacks the ability to automatically discover calendars and address books available on the server. Therefore, to synchronise with Nextcloud, add-ons are required, which can be easily installed through Thunderbird's add-on manager.
+`Thunderbird <https://www.thunderbird.net>`_ -  это современный и многофункциональный клиент электронной почты, который, при минимуме усилий, может помочь организовать работу с контактами и календарями. По умолчанию он не поддерживает синхронизацию контактов с помощью протокола CardDAV и не может автоматически находить уже созданные на сервере адрессные книги и календари, поэтому для синхронизации с Nextcloud также необходимо установить несколько дополнений. Они легко устанавливаются с помощью встроеннтого в Thunderbird менеджера дополнений. 
+
+Предпочтительный вариант
+------------------------
+
+Необходимо предварительно установить два или три дополнения:
+
+1. `Lightning calendar <https://addons.thunderbird.net/en/thunderbird/addon/lightning/>`_ (если ваша версия Thunderbird ниже 68).
+2. Менеджер синхронизации `TBSync <https://addons.thunderbird.net/en/thunderbird/addon/tbsync/>`_.
+3. `Расширение TBSync <https://addons.thunderbird.net/en/thunderbird/addon/dav-4-tbsync/>`_ для поддержки протоколов CalDAV и CardDAV.
+
+После этого, для того чтобы открыть Менеджер аккаунтов TBSync, необходимо в главном меню окна Thunderbird (вызывается нажатием левого Alt на клавиатуре) последовательно зайти в
+**Инструменты** - **Настройка синхронизации (TBSync)**, в том случае если у вас Windows, или
+**Правка** - **Настройка синхронизации (TBSync)**, в том случае если у вас Linux.
+
+Затем:
+
+* В разделе "Настройки аккаунта" нажать последовательно **Действия для аккаунта** - **Добавить новый аккаунт** - **CalDAV & CardDAV**
+* В окне "Выберите профиль сервера" убедиться в том, что выбран пункт **Автоматическая настройка** и нажать **Далее**
+* Ввести произвольное **Имя аккаунта** и полученные заранее **Имя пользователя**, **Пароль**, **Адрес сервера**, нажать **Далее**
+* На следующем этапе TBSync попытается получить с сервера доступные ссылки для взаимодействия по протоколам CalDAV и CardDAV. По окончании нажмите **Готово**
+* Теперь проверьте галочку **Включить и синхронизировать этот аккаунт**. TBSync найдёт все ссылки на календари и адрессные книги, доступные пользователю на данном сервере.
+* Поставьте галочку напротив каждого из пунктов, которые должны синхронизироваться. Выберите время, по истечении которого каждый раз будет запускаться автоматическая синхронизация. Нажмите кнопку **Синхронизировать**
+* После успешного выполнения первой синхронизации можно закрыть Менеджер аккаунтов TBSync. В большинстве случаев, если у вас нет необходимости в более продвинутой настройке, на этом настройку можно закончить.
+
+
+Альтернативный вариант: использовать дополнение CardBook (Только для синхронизации контактов)
+---------------------------------------------------------------------------------------------
+`CardBook <https://addons.thunderbird.net/en/thunderbird/addon/cardbook/>`_  это продвинутый аналог встроенной в Thunderbird адрессной книги, поддержтвающий протокол CardDAV. Вы можете пользоваться одновременно TBSync и CardBook.
  
-
-Recommended method
-------------------
-
-For this method, you need to have three add-ons installed:
-
-1. The `Lightning calendar <https://addons.thunderbird.net/en/thunderbird/addon/lightning/>`_ (Only needed for Thunderbird versions up to 68).
-2. `TBSync <https://addons.thunderbird.net/en/thunderbird/addon/tbsync/>`_.
-3. The `TBSync provider for CalDAV and CardDAV <https://addons.thunderbird.net/en/thunderbird/addon/dav-4-tbsync/>`_.
-
-When they are installed, if you are on Windows, go to **Extras**/**Synchronisation settings (TBSync)** or **Edit/Synchronisation settings (TBSync)** if on Linux, and then:
-
-* In the account manager choose "**Add account** / **CalDAV / CardDAV account**"
-* In the next window, go with the default called **Automatic configuration** and click **next**
-* Enter an **account name**, which you can freely choose, **user name**, **password** and the **URL of your server** and click **next**
-* In the next window, TBSync should have autodiscovered the CalDAV and CardDAV addresses. When it has, click **Finish**
-* Now check the box **Enable and synchronize this account**. TBSync will discover all address books and calenders your account has access to on the server
-* Check the box next to each calender and address book you want to have synchronised, also set how often you want them to be synchronised and push the button **sychronize now**
-* After the first successful synchronisation is complete, you can close the window. Henceforth, TBSync will do the work for you. You are done and can skip the next sections (unless you need a more advanced address book)
-
-
-Alternative: Using the CardBook add-on (Contacts only)
-------------------------------------------------------
-`CardBook <https://addons.thunderbird.net/en/thunderbird/addon/cardbook/>`_ is an advanced alternative to Thunderbird's address book, which supports CardDAV. You can have TBSync and CardBook installed in parallel.
- 
-1. Click the CardBook icon in the upper right corner of Thunderbird:
+1. Нажмите значек CardBook в верхнем правом углу окна Thunderbird:
 
 .. image:: ../images/cardbook_icon.png
 
-2. In CardBook:
+2. В CardBook:
 
    -  "Address book > New Address book **Remote** > Next
    -  Select **CardDAV**, fill in the address of your Nextcloud server, your user name and password
@@ -66,6 +69,6 @@ This method is only needed if you don't want to install TBSync.
 
 .. image:: ../images/CalDAV_calendar.png
 
-Fix for Thunderbird 60
-----------------------
-If you are still using Thunderbird 60, you need to change a configuration setting to make CalDAV/CardDAV work around Thunderbird bug `#1468918 <https://bugzilla.mozilla.org/show_bug.cgi?id=1468912>`_ as described `here <https://help.nextcloud.com/t/thunderbird-60-problems-with-address-and-calendar-sync/35773>`_.
+Исправление для Thunderbird 60
+------------------------------
+Если вы всё ещё пользуетесь Thunderbird 60, необходимо изменить настройки, что бы заставть CalDAV/CardDAV обойти ошибку `#1468918 <https://bugzilla.mozilla.org/show_bug.cgi?id=1468912>`_ в Thunderbird. Подробное описание ошибки `здесь <https://help.nextcloud.com/t/thunderbird-60-problems-with-address-and-calendar-sync/35773>`_.
